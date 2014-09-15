@@ -14,6 +14,10 @@ var eql = require('mongo-eql');
  */
 
 module.exports = function (a, b, filter, prefix) {
+  if(typeof a=="undefined") a={};
+  else if(a==null) a={};
+  if(typeof b=="undefined") b={};
+  else if(b==null) b={};
   var ret = {};
   
   if (typeof filter == 'string') {
@@ -40,6 +44,13 @@ module.exports = function (a, b, filter, prefix) {
  */
 
 function diff (a, b, query, prefix) {
+  for(var key in a){
+    if(typeof(b[key])=="undefined"){
+        var path=join(key,prefix);
+        unset(query, path);
+    }
+  }  
+
   for (var key in b) {
     var path = join(key, prefix);
     
