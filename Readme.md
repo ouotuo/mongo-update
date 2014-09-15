@@ -23,7 +23,6 @@ Or with a filter (see [cloudup/mongo-minify](https://github.com/cloudup/mongo-mi
 ```js
 var query = update({ a: 1, b: 2 }, { a: 2, b: 3 }, { a: 1 });
 // => { $set: { a: 2 }}
-```
 
 ## Note on arrays
 By default, arrays will not diffed. This is not ideal when dealing with nested documents.
